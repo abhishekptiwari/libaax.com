@@ -1,0 +1,9 @@
+.size__list {
+  color: #ff4500;
+  border-radius: 50%;
+  width: 50px;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: large;
+}

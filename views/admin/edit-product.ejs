@@ -1,0 +1,225 @@
+<%- include('./partials/adminHead.ejs') %> 
+<%- include('./partials/adminHeader.ejs') %> 
+<%- include('./partials/adminSidebar.ejs') %>
+
+<div class="form">
+  <form
+    class="form-horizontal"
+    action="/admin/<% if (editing) { %>edit-product?_csrf=<%= csrfToken%><% } else { %>add-product?_csrf=<%= csrfToken %><% } %>"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="name">Product Name</label>
+      <div class="col-md-4">
+        <input
+          id="name"
+          name="name"
+          class="form-control input-md"
+          value="<% if(editing) { %><%= product.name %><% } %>"
+          type="text"
+        />
+      </div>
+    </div>
+    <!-- textarea -->
+    <div class="col-sm-4">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          class="form-control"
+          value="<% if(editing) { %><%= product.description %><% } %>"
+          rows="5"
+          placeholder="Enter description..."
+        ></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Type</label>
+      <select
+        class="form-control select2bs4"
+        style="width: 41%"
+        name="prodtype"
+      >
+        <option selected="selected">Shirt</option>
+        <option>Kurta</option>
+      </select>
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="color">Color</label>
+      <div class="col-md-5">
+        <input
+          id="color"
+          name="color"
+          value="<% if(editing) { %><%= product.subcategory.color.name %><% } %>"
+          class="form-control input-md"
+          type="text"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="customFile">Image One&nbsp;&nbsp;&nbsp;</label>
+      <div class="custom-file col-md-4">
+        <input
+          type="file"
+          name="images"
+          class="custom-file-input"
+          id="customFile"
+        />
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+    <% if (editing) { %>
+      <div class="form-group">
+        <label for="customFile">Previous Image:&nbsp;&nbsp;&nbsp;</label>
+        <span><%= product.subcategory.color.images[0].split('\\')[1] %></span>
+      </div>
+    <% } %>
+    <div class="form-group">
+      <label for="customFile">Image Two&nbsp;&nbsp;&nbsp;</label>
+      <div class="custom-file col-md-4">
+        <input
+          type="file"
+          name="images"
+          class="custom-file-input"
+          id="customFile"
+        />
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+    <% if (editing) { %>
+    <div class="form-group">
+      <label for="customFile">Previous Image:&nbsp;&nbsp;&nbsp;</label>
+      <span><%= product.subcategory.color.images[1].split('\\')[1] %></span>
+    </div>
+    <% } %>
+    <div class="form-group">
+      <label for="customFile">Image Three</label>
+      <div class="custom-file col-md-4">
+        <input
+          type="file"
+          name="images"
+          class="custom-file-input"
+          id="customFile"
+        />
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+    <% if (editing) { %>
+      <div class="form-group">
+        <label for="customFile">Previous Image:&nbsp;&nbsp;&nbsp;</label>
+        <span><%= product.subcategory.color.images[2].split('\\')[1] %></span>
+      </div>
+    <% } %>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Size</label>
+        <select
+        class="select2bs4"
+        name="size1" multiple="multiple" data-placeholder="Select a size" style="width: 100%;"
+      >
+        <option>XS</option>
+        <option>S</option>
+        <option>M</option>
+        <option>XL</option>
+        <option>2XL</option>
+        <option>XXL</option>
+        <option>3XL</option>
+        <option>4XL</option>
+      </select>
+      </div>
+    </div>
+    <label>Price with Size </label>
+    <div class="input-group col-md-5">
+      <div class="input-group-prepend">
+        <span class="input-group-text">₹</span>
+      </div>
+      <input 
+       type="text"
+       name="price1"
+       value="<% if(editing) { %><%= product.subcategory.size.price[0] %><% } %>"
+       class="form-control"
+       />
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
+      </div>
+    </div>
+    <br />
+    <div class="input-group col-md-5">
+      <div class="input-group-prepend">
+        <span class="input-group-text">₹</span>
+      </div>
+      <input 
+       type="text"
+       name="price1"
+       value="<% if(editing) { %><%= product.subcategory.size.price[1] %><% } %>"
+       class="form-control"
+       />
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
+      </div>
+    </div>
+    <br />
+    <div class="input-group col-md-5">
+      <div class="input-group-prepend">
+        <span class="input-group-text">₹</span>
+      </div>
+      <input 
+       type="text"
+       name="price1"
+       value="<% if(editing) { %><%= product.subcategory.size.price[2] %><% } %>"
+       class="form-control"
+       />
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
+      </div>
+    </div>
+    <br />
+    <div class="input-group col-md-5">
+      <div class="input-group-prepend">
+        <span class="input-group-text">₹</span>
+      </div>
+      <input 
+     type="text"
+     name="price1"
+     value="<% if(editing) { %><%= product.subcategory.size.price[3] %><% } %>"
+     class="form-control"
+     />
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
+      </div>
+    </div>
+    <br />
+    <div class="input-group col-md-5">
+      <div class="input-group-prepend">
+        <span class="input-group-text">₹</span>
+      </div>
+      <input 
+     type="text"
+     name="price1"
+     value="<% if(editing) { %><%= product.subcategory.size.price[4] %><% } %>"
+     class="form-control"
+     />
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
+      </div>
+    </div>
+    <br />
+    <!-- Button -->
+    <div class="form-group">
+      <% if (editing) { %>
+      <input type="hidden" value="<%= product._id %>" name="productId" />
+      <% } %>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">
+        <% if (editing) { %>Update Product <% } else { %>Add Product <% } %>
+      </button>
+    </div>
+  </form>
+</div>
+
+<%- include('./partials/adminFooter.ejs') %>

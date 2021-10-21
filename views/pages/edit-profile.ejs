@@ -1,0 +1,71 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/auth/css/bootstrap.min.css">
+<link rel="stylesheet" href="/auth/css/all.min.css">
+<link rel="stylesheet" href="/auth/css/animate.css">
+<link rel="stylesheet" href="/auth/css/flaticon.css">
+<link rel="stylesheet" href="/auth/css/lightcase.css">
+<link rel="stylesheet" href="/auth/css/swiper.min.css">
+<link rel="stylesheet" href="/auth/css/nice-select.css">
+<link rel="stylesheet" href="/auth/css/main.css">
+<%- include('../partials/header.ejs') %>
+ <!-- Breadcrumb Section Begin -->
+ <section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Update Email</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Update Email</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- Breadcrumb Section End -->
+<section class="account-section padding-top padding-bottom bg_img bg_right_bottom"
+data-background="./assets/images/account/account-bg.png">
+<div class="container">
+    <div class="account-wrapper">
+        <div class="account-area">
+            <h3 class="account-title">Update Your Profile</h3>
+            <form class="sign-in-form" action="/edit-profile" method="POST" enctype="application/x-www-form-urlencoded">
+                <% if (errorMsg) { %> 
+                    <div class="alert alert-dismissible alert-danger">
+                        <button type="button" class="close back" data-dismiss="alert">&times;</button>
+                        <strong><%= errorMsg[0].msg %></strong>
+                    </div>
+                <% } %>
+                <div class="form-group">
+                    <input 
+                     type="email"
+                     placeholder="Email ID"
+                     name="email"
+                     value="<%= oldInput.email %>"
+                      >
+                </div>
+                    <!-- **************************8 -->
+                <div class="form-group">
+                    <% if (editing) { %>
+                     <input type="hidden" value="<%= user._id %>" name="userId" />
+                    <% } %>
+                    <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+                    <input type="submit" value="Continue">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+<script src="/auth/js/jquery-3.3.1.min.js"></script>
+<script src="/auth/js/plugins.js"></script>
+<script src="/auth/js/lightcase.js"></script>
+<script src="/auth/js/swiper.min.js"></script>
+<script src="/auth/js/wow.min.js"></script>
+<script src="/auth/js/countdown.min.js"></script>
+<script src="/auth/js/counterup.min.js"></script>
+<script src="/auth/js/nice-select.js"></script>
+<script src="/auth/js/main.js"></script>
+<%- include('../partials/footer.ejs') %>

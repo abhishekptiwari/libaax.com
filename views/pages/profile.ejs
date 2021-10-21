@@ -1,0 +1,147 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/css/profile.css" type="text/css" />
+<%- include('../partials/header.ejs') %>
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <div class="">
+                        <a href="/"><img src="img/logo.png" height="200" width="200" alt=""></a>
+                    </div>                
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                            <h5>
+                              <%= user.name %>
+                            </h5>
+                            <h6>
+                              <%= user.email %>
+                            </h6><br><br><br>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <% if(doesAddressExist && details.pin_code !== '') { %>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Address</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a class="profile-edit-btn" style="text-decoration: none;" href="/edit-profile/<%= user._id %>?edit=true">Update Email</a>
+                <a class="profile-edit-btn-or" href="/edit-password/<%= user._id %>" name="btnAddMore">Update Password</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work ls">
+                    <h2> <b> Profile</b></h2>
+                    <a href="/my_orders">My Orders</a><br/>
+                    <a href="">Gift Reminders</a><br/>
+                    <a href="/shop">Start Shoping</a><br/>
+                    <a href="">Issues</a><br/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><%= user.name %></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>  <%= user.email %></p>
+                                    </div>
+                                </div>
+                                <%if(doesAddressExist && details.pin_code !== '' ) {%>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone No</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>  <%= details.phone %></p>
+                                        </div>
+                                    </div>
+                                <%}%>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Pin Code</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.pin_code %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Area</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.area %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Flat</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.flat %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>LandMark</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.landmark %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>city</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.city %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>State</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><%= details.state %></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%- include('../partials/footer.ejs') %>
+<% if (emailUpdateMessage) { %>
+    <script>
+        window.addEventListener('pageshow', () => {
+            Swal.fire(
+            `Email Updated Successfully!`,
+            'success'
+            )
+        });
+    </script>
+<% } %>

@@ -1,0 +1,56 @@
+<%- include('./partials/adminHead.ejs') %>
+<%- include('./partials/adminHeader.ejs') %>
+<%- include('./partials/adminSidebar.ejs') %>
+
+<div class="form">
+  <form class="form-horizontal" action="/admin/add-hero?_csrf=<%= csrfToken %>" method="POST" enctype="multipart/form-data">
+    <!-- Text input-->
+   <div class="form-group">
+    <label class="col-md-4 control-label" for="validity">Title</label>  
+    <div class="col-md-4">
+    <input
+     id="name"
+     name="title"
+     class="form-control input-md"
+     type="text"
+     >
+    </div>
+  </div>   
+   <div class="form-group">
+    <label class="col-md-4 control-label" for="validity">Main-Header</label>  
+    <div class="col-md-4">
+    <input
+     id="name"
+     name="header"
+     class="form-control input-md"
+     type="text"
+     >
+    </div>
+  </div>   
+  <div class="col-sm-4">
+    <!-- textarea -->
+    <div class="form-group">
+      <label for="description" >Description</label>
+      <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description...✏"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label style="margin-left: 7px;" for="customFile">Image</label><br>
+    <div class="custom-file col-md-4">
+      <input type="file" name="image" class="custom-file-input" id="customFile">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+  </div>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <button 
+  type="submit"
+            id="singlebutton" 
+            name="singlebutton"
+            class="btn btn-primary"
+          >
+          Add Hero
+          </button>
+  </form>
+</div><br>
+<%- include('./partials/adminFooter.ejs') %>
+   

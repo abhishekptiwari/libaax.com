@@ -1,0 +1,16 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+<%- include('../includes/hero.ejs') %>
+<%- include('../includes/product-list.ejs') %>
+<%- include('../partials/footer.ejs') %>
+<% if (successMessage) { %>
+  <script>
+    setTimeout(() => {
+      Swal.fire(
+      `WELCOME!`,
+        'Logged-In Successfully',
+        'success'
+      )
+    }, 2000);
+ </script>
+<% } %>

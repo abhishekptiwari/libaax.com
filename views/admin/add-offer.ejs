@@ -1,0 +1,69 @@
+<%- include('./partials/adminHead.ejs') %>
+<%- include('./partials/adminHeader.ejs') %>
+<%- include('./partials/adminSidebar.ejs') %>
+
+<div class="form">
+  <form 
+  class="form-horizontal" 
+  action="/admin/<% if (editing) { %>edit-offer?_csrf=<%= csrfToken%><% } else { %>add-offer?_csrf=<%= csrfToken %><% } %>" 
+  method="POST"
+  enctype="multipart/form-data"
+  >
+    <!-- Text input-->
+   <div class="form-group">
+    <label class="col-md-4 control-label" for="title">Title</label>  
+    <div class="col-md-4">
+    <input
+     id="name"
+     name="title"
+     class="form-control input-md"
+     value="<% if(editing) { %><%= offer.title %><% } %>"
+     type="text"
+     >
+    </div>
+  </div>   
+   <div class="form-group">
+    <label class="col-md-4 control-label" for="link">Link</label>  
+    <div class="col-md-4">
+    <input
+     id="name"
+     name="link"
+     class="form-control input-md"
+     value="<% if(editing) { %><%= offer.btn_link %><% } %>"
+     type="text"
+     >
+    </div>
+  </div>   
+  <div class="form-group">
+    <label style="margin-left: 7px;" for="customFile">Image</label><br>
+    <div class="custom-file col-md-4">
+      <input type="file" name="image" class="custom-file-input" id="customFile">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+  </div>
+  
+  <% if (editing) { %>
+    <%
+      const img  = offer.imageUrl;
+      let imgArr = img.split('\\')
+      newImg = `${imgArr[1]}/${imgArr[2]}`
+    %>
+    <div class="form-group">
+      <label for="customFile">Previous Image:&nbsp;&nbsp;&nbsp;</label>
+      <span><%= offer.imageUrl.split('\\')[2] %></span>
+      <div>
+        <img style="width: 100px; height: 90px;" src="/<%= newImg %>" alt="offer" />
+      </div>
+    </div>
+  <% } %>
+  <% if (editing) { %>
+    <input type="hidden" value="<%= offer._id %>" name="offerId" />
+  <% } %>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">
+  <% if (editing) { %>Edit Offer<% } else { %>Add Offer<% } %>
+  </button>
+  </form>
+</div>
+<%- include('./partials/adminFooter.ejs') %>
+   

@@ -1,0 +1,88 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+  <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="breadcrumb__text">
+                      <h4>My Orders</h4>
+                      <div class="breadcrumb__links">
+                          <a href="/">Home</a>
+                          <a href="/profile">My Profile</a>
+                          <span>My Orders</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  <!-- Breadcrumb Section End -->
+
+  <!-- Shopping Cart Section Begin -->
+  <section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+              <form action="/updated-cart" method="POST"> 
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let Orderedproduct of orders) { %>
+                            <% let i = 0 %>
+                              <%
+                                  const image = Orderedproduct.products[i].product.subcategory.color.images[0] 
+                                  const size = Orderedproduct.products[i].product.subcategory.size.price[0]
+                              %>
+                              <% console.log(Orderedproduct) %>
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="/<%= image %>" style="height: 90px !important; width: 90px !important;" alt="product image">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6><%= Orderedproduct.products[i].product.name %></h6>
+                                        <!-- <h5>&#x20B9;<%= Orderedproduct.products[i].price %> (<%= Orderedproduct.products[i].size %>) </h5> -->
+                                    </div>
+                                </td>
+                                <!-- <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" name="newquantity" value="<%= Orderedproduct.products[i].quantity %>">
+                                        </div>
+                                    </div>
+                                </td> -->
+                                <td class="cart__price"><%= Orderedproduct.products[i].quantity %></td>
+                                <td class="cart__price" id="totalAmt">₹<%= orders[i].totalAmount/100 %></td>
+                            </tr>
+                            <% i = i+1 %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="/shop">Continue Shopping</a>
+                        </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+           
+           
+            
+        </div>
+    </div>
+  </section>
+
+  <!-- Shopping Cart Section End -->
+  <%- include('../partials/footer.ejs') %>

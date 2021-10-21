@@ -1,0 +1,57 @@
+.add-rad-border {
+  border: 1.2px solid black;
+}
+.fb-1 {
+  border: 1.2px solid black;
+}
+.remove-rad-border {
+  border: 0;
+}
+
+.xs-btn-sorting {
+  color: #111111;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  border: 1px solid #e5e5e5e5;
+  padding: 6px 25px;
+  margin-right: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+.xs-btn-sorting:hover {
+  color: white;
+  background-color: #111111;
+}
+
+/* Update cart button */
+.update-primary-btn {
+  color: white;
+  background-color: #111111;
+  padding: 14px 35px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.update-primary-btn > i {
+  margin-right: 15px;
+}
+
+.cart-product-delete {
+  height: 40px;
+  width: 40px;
+  background-color: #f3f2ee;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  color: #111111;
+}

@@ -1,0 +1,52 @@
+  <!-- Banner Section Begin -->
+  <% 
+  const offer1Img = Offer[0].imageUrl
+  const first = offer1Img.split('\\')
+  newImg = `${first[1]}/${first[2]}`
+  const offer2Img = Offer[1].imageUrl
+  const second = offer2Img.split('\\')
+  newImg2 = `${second[1]}/${second[2]}`
+  const offer3Img = Offer[2].imageUrl
+  const third = offer3Img.split('\\')
+  newImg3 = `${third[1]}/${third[2]}`
+  %>
+  <section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic">
+                        <img src="<%= newImg %>" alt="offer-1">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2><%= Offer[0].title %></h2>
+                        <a href="<%= Offer[0].btn_link %>">Shop now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="banner__item banner__item--middle">
+                    <div class="banner__item__pic">
+                        <img src="<%= newImg2 %>" alt="offer-2">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2><%= Offer[1].title %></h2>
+                        <a href="<%= Offer[1].btn_link %>">Shop now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="banner__item banner__item--last">
+                    <div class="banner__item__pic">
+                        <img src="<%= newImg3 %>" alt="offer-3">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2><%= Offer[2].title %></h2>
+                        <a href="<%= Offer[2].btn_link %>">Shop now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section End -->

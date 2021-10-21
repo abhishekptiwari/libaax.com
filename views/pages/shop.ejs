@@ -1,0 +1,285 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+  <!-- Breadcrumb Section Begin -->
+  <section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shop</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <form action="#">
+                            <input type="text" placeholder="Search...">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <li><a href="/shop?sort=Shirt">Shirts (<% prods ?  prods.length : ''%>)</a></li>
+                                                <li><a href="/shop?sort=Kurta">Kurtas (<% prods ?  prods.length : ''%>)</a></li>
+                                                <li><a href="#">Bags (20)</a></li>
+                                                <li><a href="#">Clothing (20)</a></li>
+                                                <li><a href="#">Shoes (20)</a></li>
+                                                <li><a href="#">Accessories (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__brand">
+                                            <ul>
+                                                <li><a href="#">Louis Vuitton</a></li>
+                                                <li><a href="#">Chanel</a></li>
+                                                <li><a href="#">Hermes</a></li>
+                                                <li><a href="#">Gucci</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                </div>
+                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__price">
+                                            <ul>
+                                                <li><a href="/shop?sort=<%= query %>&price=500-1000">₹500.00 - ₹1000.00</a></li>
+                                                <li><a href="/shop?sort=<%= query %>&price=1500-2000">₹1500.00 - ₹2000.00</a></li>
+                                                <li><a href="/shop?sort=<%= query %>&price=2000-2500">₹2000.00 - ₹2500.00</a></li>
+                                                <li><a href="/shop?sort=<%= query %>&price=2500">₹2500.00+</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                </div>
+                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__size">
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=xs" >
+                                                <button class="xs-btn-sorting">XS</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=s" >
+                                                <button class="xs-btn-sorting">s</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=m" >
+                                                <button class="xs-btn-sorting">m</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=xl" >
+                                                <button class="xs-btn-sorting">xl</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=xxl" >
+                                                <button class="xs-btn-sorting">xxl</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=2xl">
+                                                <button class="xs-btn-sorting">2xl</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=3xl">
+                                                <button class="xs-btn-sorting">3xl</button>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&size=4xl">
+                                                <button class="xs-btn-sorting">4xl</button>
+                                            </a>                                                                                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                </div>
+                                <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__color">
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=black">
+                                                <label class="c-1" for="sp-1">
+                                                   <input type="submit" id="sp-1">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=blue">
+                                                <label class="c-2" for="sp-2">
+                                                   <input type="submit" id="sp-2">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=skin">
+                                                <label class="c-3" for="sp-3">
+                                                    <input type="submit" id="sp-3">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=lightgray">
+                                                <label class="c-4" for="sp-4">
+                                                    <input type="submit" id="sp-4">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=gray">
+                                                <label class="c-5" for="sp-5">
+                                                    <input type="submit" id="sp-5">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=pink">
+                                                <label class="c-6" for="sp-6">
+                                                    <input type="submit" id="sp-6">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=lightgreen">
+                                                <label style="background-color: lightgreen !important;" class="c-7" for="sp-7">
+                                                    <input type="submit" id="sp-7">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=red">
+                                                <label class="c-8" for="sp-8">
+                                                    <input type="submit" id="sp-8">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=olive">
+                                                <label style="background-color: olive !important;" class="c-8" for="sp-9">
+                                                    <input type="submit" id="sp-9">
+                                                </label>
+                                            </a>
+                                            <a href="/shop?sort=<%= query %>&price=<%= price[0] %>-<%= price[1] %>&color=green">
+                                                <label style="background-color: green !important;" class="c-8" for="sp-10">
+                                                    <input type="submit" id="sp-10">
+                                                </label>
+                                            </a>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                                </div>
+                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__tags">
+                                            <a href="#">New</a>
+                                            <a href="#">Hot</a>
+                                            <a href="#">Shoes</a>
+                                            <a href="#">Fashio</a>
+                                            <a href="#">Clothing</a>
+                                            <a href="#">Hats</a>
+                                            <a href="#">Accessories</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="shop__product__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__left">
+                                <p>Showing 1–12 of 126 results</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__right">
+                                <p>Sort by Price:</p>
+                                <select>
+                                    <option value="">Low To High</option>
+                                    <option value="">$0 - $55</option>
+                                    <option value="">$55 - $100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <% for(let product of prods) { %>
+                    <%
+                        const image = product.subcategory.color.images[0]
+                        const size = product.subcategory.size.price[0]
+                    %>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg">
+                                <a href="/shop-detail/<%= product._id %>/">
+                                    <img src="/<%= image %>" alt="product image"  style="height: 280px;"/>
+                                </a>
+                                <ul class="product__hover">
+                                    <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
+                                    <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                    </li>
+                                    <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h6><%= product.name %></h6>
+                                <form action="/cart" method="POST"> 
+                                    <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+                                    <input type="hidden" name="productId" value="<%= product._id %>">
+                                    <a class="add-cart" href="javascript:;" onclick="parentNode.submit();">+ Add To Cart</a>
+                                </form>
+                                <div class="rating">
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
+                                </div>
+                                <h5>₹<%= size %></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__pagination">
+                            <a class="active" href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <span>...</span>
+                            <a href="#">21</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+<%- include('../partials/footer.ejs') %>

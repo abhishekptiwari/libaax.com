@@ -1,0 +1,115 @@
+<%- include('../partials/adminHead.ejs') %>
+<%- include('../partials/adminHeader.ejs') %>
+<%- include('../partials/adminSidebar.ejs') %>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>All Offers</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">All Offers</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+<!-- Main content -->
+<section class="content">
+  <% if(Offers.length > 0) { %>
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">All Heros</h3>
+
+      <div class="card-tools">
+        <button
+          type="button"
+          class="btn btn-tool"
+          data-card-widget="collapse"
+          data-toggle="tooltip"
+          title="Collapse"
+        >
+          <i class="fas fa-minus"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-tool"
+          data-card-widget="remove"
+          data-toggle="tooltip"
+          title="Remove"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-striped projects">
+        <thead>
+          <tr>
+            <th style="width: 20%">Hero Image</th>
+            <th style="width: 15%">Hero Title</th>
+            <th style="width: 25%">Hero Description</th>
+            <th style="width: 10%"  class="text-center" >Options</th>
+          </tr>
+        </thead>
+        <% for(let [index, offer] of Offers.entries()) { %>
+          <%
+            const img  = offer.imageUrl;
+            let imgArr = img.split('\\')
+            newImg = `${imgArr[1]}/${imgArr[2]}`
+            const title  = offer.title;
+            const link  = offer.btn_link;
+          %>
+        <tbody>
+          <tr>
+            <td style="margin-left: 0;">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <img
+                    alt="product image"
+                    src="/<%= newImg %>"
+                    style="width: 300px; object-fit: contain; height: 150px;"
+                  />
+                </li>
+              </ul>
+            </td>
+            <td>
+              <%= title %>
+            </td>
+            <td class="project_progress">
+              <p><%= link %></p>
+            </td>
+            <% if (editing) { %>
+              <input type="hidden" value="<%= offer._id %>" name="offerId" />
+              <% } %>
+            <td class="project-actions text-right" style="display: flex !important; margin-left: 35px !important; margin-top: 20px;">
+              <a style="margin-right: 5px !important;" class="btn btn-info btn-sm" href="/admin/edit-offer/<%= offer._id %>?edit=true">
+                <i class="fas fa-pencil-alt"></i>
+                Edit
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        <% } %>
+
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+  <% } else { %>
+    <h1>No Offers Found!</h1>
+  <% } %>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<%-include('../partials/adminFooter.ejs') %>
+

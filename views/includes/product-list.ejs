@@ -1,0 +1,110 @@
+<section class="product spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="filter__controls">
+          <li class="active" data-filter="*">Best Sellers</li>
+          <li data-filter=".new-arrivals">Shirts</li>
+          <li data-filter=".hot-sales">Kurta's</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row product__filter">
+      <% for(let product of prodShirts) { %>
+      <div
+        class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals disp-row"
+      >
+      <%
+      const image = product.subcategory.color.images[0]
+      const size = product.subcategory.size.price[0]
+      %>
+        <div class="product__item prod-newitem">
+          <div class="product__item__pic set-bg" >
+            <a href="/shop-detail/<%= product._id %>/">
+              <img src="/<%= image %>" alt="product image"  style="height: 280px;"/>
+            </a>
+            <span class="label">New</span>
+            <ul class="product__hover">
+              <li>
+                <a href="#"><img src="img/icon/heart.png" alt="" /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="img/icon/compare.png" alt="" />
+                  <span>Compare</span></a
+                >
+              </li>
+              <li>
+                <a href="#"><img src="img/icon/search.png" alt="" /></a>
+              </li>
+            </ul>
+            </div>
+            <div class="product__item__text">
+            <h6><%= product.name %></h6>
+            <form action="/cart" method="POST"> 
+              <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+              <input type="hidden" name="productId" value="<%= product._id %>">
+              <a class="add-cart" href="javascript:;" onclick="parentNode.submit();">+ Add To Cart</a>
+            </form>
+            <div class="rating">
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+            </div>
+            <h5>₹<%= size %></h5>
+            </div>
+        </div>
+      </div>
+      <% } %>
+      <% for(let product of prodKurtas) { %>
+        <div
+          class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales disp-row"
+        >
+        <%
+          const image = product.subcategory.color.images[0]
+          const size = product.subcategory.size.price[0]
+        %>
+          <div class="product__item prod-newitem">
+            <div class="product__item__pic set-bg" >
+              <a href="/shop-detail/<%= product._id %>/">
+             <img src="/<%= image %>" alt="product image"  style="height: 280px;"/>
+            </a>
+              <ul class="product__hover">
+                <li>
+                  <a href="#"><img src="img/icon/heart.png" alt="" /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img src="img/icon/compare.png" alt="" />
+                    <span>Compare</span></a
+                  >
+                </li>
+                <li>
+                  <a href="#"><img src="img/icon/search.png" alt="" /></a>
+                </li>
+              </ul>
+              </div>
+              <div class="product__item__text">
+              <h6><%= product.name %></h6>
+              <form action="/cart" method="POST"> 
+                <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <a class="add-cart" href="javascript:;" onclick="parentNode.submit();">+ Add To Cart</a>
+              </form>
+              <div class="rating">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+              <h5>₹<%= size %></h5>
+              </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>

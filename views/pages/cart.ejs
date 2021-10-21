@@ -1,0 +1,149 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+  <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="breadcrumb__text">
+                      <h4>Shopping Cart</h4>
+                      <div class="breadcrumb__links">
+                          <a href="/">Home</a>
+                          <a href="/shop">Shop</a>
+                          <span>Shopping Cart</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+  <!-- Breadcrumb Section End -->
+
+  <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+      <div class="container">
+        <% if (products.length > 0) { %>
+            <% console.log(products) %>
+          <div class="row">
+              <div class="col-lg-8">
+                <form action="/updated-cart" method="POST"> 
+                  <div class="shopping__cart__table">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>Product</th>
+                                  <th>Quantity</th>
+                                  <th>Total</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <% for(let product of products) { %>
+                                <%
+                                    const image = product.productId.subcategory.color.images[0] 
+                                    const size = product.productId.subcategory.size.price[0]
+                                %>
+                              <tr>
+                                  <td class="product__cart__item">
+                                      <div class="product__cart__item__pic">
+                                          <img src="/<%= image %>" style="height: 90px !important; width: 90px !important;" alt="product image">
+                                      </div>
+                                      <div class="product__cart__item__text">
+                                          <h6><%= product.productId.name %></h6>
+                                          <h5>&#x20B9;<%= product.price %> (<%= product.size %>) </h5>
+                                      </div>
+                                  </td>
+                                  <td class="quantity__item">
+                                      <div class="quantity">
+                                          <div class="pro-qty-2">
+                                              <input type="text" name="newquantity" value="<%= product.quantity %>">
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td class="cart__price">₹<%= product.price * product.quantity %></td>
+                                  <td><i class="fa fa-close"></i></td>
+                              </tr>
+                              <% } %>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="continue__btn">
+                              <a href="#">Continue Shopping</a>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="continue__btn update__btn">
+                                <input name="_csrf" type="hidden" value="<%= csrfToken %>" />
+                                <button class="update-primary-btn" type="submit"><i class="fa fa-spinner"></i>Update Cart</button>
+                                <!-- <a href="javascript:;" onclick="parentNode.submit();"><i class="fa fa-spinner"></i> Update cart</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+              </div>
+              <!-- if address exists -->
+              <% if(user.address.details.length !== 0) { %>
+                <form action="/order" method="POST">
+                    <input type="hidden" name="total" id="total" >
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />   
+                    <div style="margin-left: 40px;">
+                        <h3>Address</h3>
+                        <label for="pincode" style="margin-right: 10px;">Pincode</label>
+                        <%= user.address.details[0].pin_code%>
+                        <br>
+                        <label for="area" style="margin-right: 10px;">Area</label>
+                        <%= user.address.details[0].area %>
+                        <br>
+                        <label for="landmark" style="margin-right: 10px;">Landmark</label>
+                        <%= user.address.details[0].landmark %>
+                        <br>
+                        <label for="landmark" style="margin-right: 10px;">Flat</label>
+                        <%= user.address.details[0].flat %>
+                        <br>
+                        <label for="pincode" style="margin-right: 10px;">city</label>
+                        <%= user.address.details[0].city %>
+                        <br>
+                        <label for="state" style="margin-right: 10px;">State</label>
+                        <%= user.address.details[0].state %> 
+                    </div>
+                    <button class="primary-btn">Proceed to checkout</button>
+               </form>
+              <% } %>
+             
+              <div class="col-lg-4">
+                  <!-- <div class="cart__discount">
+                      <h6>Discount codes</h6>
+                      <form action="#">
+                          <input type="text" placeholder="Coupon code">
+                          <button type="submit">Apply</button>
+                      </form>
+                  </div> -->
+                  <div class="cart__total">
+                      <h6>Cart total</h6>
+                      <ul>
+                          <li>Total <span id="checkoutPrice"></span></li>
+                      </ul>
+                      <% if(user.address.details.length == 0) { %>
+                        <a href="/get-Add-Address" class="primary-btn">Proceed to checkout</a>
+                      <% } %>
+                  </div>
+              </div>
+          </div>
+          <% } else { %>
+            <h1>No Products in Cart😭😭</h1>
+          <% } %>
+      </div>
+    </section>
+    <script>
+        let finalPrice = document.querySelector('.cart__price').innerText;
+        // console.log(finalPrice);
+        let checkoutPrice = document.getElementById('checkoutPrice');
+        checkoutPrice.innerText = finalPrice;
+        let finalCheckoutPrice = document.getElementById('total');
+        finalCheckoutPrice.value = finalPrice.split('₹')[1];
+    </script>
+
+  <!-- Shopping Cart Section End -->
+<%- include('../partials/footer.ejs') %>

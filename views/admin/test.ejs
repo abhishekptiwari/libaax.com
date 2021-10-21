@@ -1,0 +1,15 @@
+<%- include('./partials/adminHead.ejs') %> 
+<%- include('./partials/adminHeader.ejs') %> 
+<%- include('./partials/adminSidebar.ejs') %>
+<form class="form-horizontal"  method="POST" action="/admin/test-post?_csrf=<%= csrfToken%>" enctype="application/x-www-form-urlencoded, multipart/form-data">
+  <input type="hidden" value="<%= product.name %>" name="prodName" />
+  <input type="hidden" value="<%= product._id %>" name="productId" />
+  <input type="text" name="text"/>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+  <div class="form-group" >
+    <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">
+      Update Product
+    </button>
+  </div>
+</form>
+<%- include('./partials/adminFooter.ejs') %>
